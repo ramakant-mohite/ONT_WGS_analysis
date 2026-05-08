@@ -4,7 +4,7 @@
 Workflow for constructing viral whole genomes from raw Oxford Nanopore Technologies (ONT) amplicon sequencing data. It follows an **ARTIC-style** approach optimized for generating high-quality consensus sequences for downstream phylogenetic visualization and mutation burden analysis.
 
 > **Note:** The ARTIC workflow currently runs most reliably in a Python 3.10 environment.
-            To ensure void system-level library conflicts (e.g., GLIBC errors) use singularity containers for Clair3 and Dorado.
+            To avoid system-level library conflicts (e.g., GLIBC errors) use singularity containers for Clair3 and Dorado.
 
 ---
 
