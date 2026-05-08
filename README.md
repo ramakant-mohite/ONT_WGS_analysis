@@ -1,26 +1,26 @@
 
 # 🧬 Viral Whole-Genome Construction Pipeline
 
-Workflow for constructing viral whole genomes from raw Oxford Nanopore Technologies (ONT) amplicon sequencing data. It follows an **ARTIC-style** approach optimized for generating high-quality consensus sequences can be used for downstream phylogenetic visualization and mutation burden analysis.
+Workflow for constructing viral whole genomes from raw Oxford Nanopore Technologies (ONT) amplicon sequencing data. It follows an **ARTIC-style** approach optimized for generating high-quality consensus sequences for downstream phylogenetic visualization and mutation burden analysis.
 
 > **Note:** The ARTIC workflow currently runs most reliably in a Python 3.10 environment.
-            To ensure maximum reproducibility and avoid system-level library conflicts (e.g., GLIBC errors), the computationally heavy steps in this workflow (Basecalling and Variant Calling) are executed using Singularity containers.
+            To ensure void system-level library conflicts (e.g., GLIBC errors) use singularity containers for Clair3 and Dorado.
 
 ---
 
 ## 📑 Table of Contents
 
-1. [Step 1: Basecalling](https://www.google.com/search?q=%23step-1-basecalling)
-2. [Step 2: Read Filtering](https://www.google.com/search?q=%23step-2-read-filtering)
-3. [Step 3: Read Alignment](https://www.google.com/search?q=%23step-3-read-alignment-to-reference-genome)
-4. [Step 4: Primer Trimming](https://www.google.com/search?q=%23step-4-artic-primer-trimming)
-5. [Step 5: Coverage Masking](https://www.google.com/search?q=%23step-5-coverage-mask-generation)
-6. [Step 6: Variant Calling](https://www.google.com/search?q=%23step-6-variant-calling-using-clair3)
-7. [Step 7: Variant Filtering](https://www.google.com/search?q=%23step-7-variant-filtering)
-8. [Step 8: Consensus Generation](https://www.google.com/search?q=%23step-8-consensus-genome-generation)
-9. [Step 9: Multiple Sequence Alignment (MAFFT)](https://www.google.com/search?q=%23step-9-multiple-sequence-alignment-mafft)
-10. [Step 10: Phylogenetic Analysis (IQ-TREE)](https://www.google.com/search?q=%23step-10-phylogenetic-analysis-iq-tree)
-11. [Acknowledgements & Citation](https://www.google.com/search?q=%23-acknowledgements--citation)
+1. [Step 1 — Basecalling](#step-1-basecalling)
+2. [Step 2 — Read Filtering](#step-2-read-filtering)
+3. [Step 3 — Read Alignment](#step-3-read-alignment-to-reference-genome)
+4. [Step 4 — ARTIC Primer Trimming](#step-4-artic-primer-trimming)
+5. [Step 5 — Coverage Masking](#step-5-coverage-mask-generation)
+6. [Step 6 — Variant Calling Using Clair3](#step-6-variant-calling-using-clair3)
+7. [Step 7 — Variant Filtering](#step-7-variant-filtering)
+8. [Step 8 — Consensus Genome Generation](#step-8-consensus-genome-generation)
+9. [Step 9 — Multiple Sequence Alignment (MAFFT)](#step-9-multiple-sequence-alignment-mafft)
+10. [Step 10 — Phylogenetic Analysis (IQ-TREE)](#step-10-phylogenetic-analysis-iq-tree)
+11. [Acknowledgements & Citation](#-acknowledgements--citation)
 
 ---
 
@@ -97,13 +97,13 @@ The Clair3 workflow internally combines:
 
 ### Step 7: Variant Filtering
 
-**Script:** `/07_variant_filteration.sh`
+**Script:** `/07_variant_filtering.sh`
 
 `bcftools` is used to separate high-confidence from low-confidence variants using criteria such as Read Depth (`DP > 20`) and Genotype Quality (`GQ > 3`).
 
 ### Step 8: Consensus Genome Generation
 
-**Script:** `/08_consensus.sh`
+**Script:** `/08_consensus_generation.sh`
 
 The final sample-specific viral genome is reconstructed using `bcftools consensus`, applying high-confidence variants to the reference while masking low-coverage regions as `N`.
 
